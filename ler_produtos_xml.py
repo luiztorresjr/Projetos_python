@@ -12,11 +12,6 @@ codprod = []
 for movie in root.iter(nf):
     codprod.append(float(movie.text))
 
-nf ='{}CFOP'.format(ns)
-natOper = []
-for movie in root.iter(nf):
-    natOper.append(movie.text)
-
 nf = '{}qCom'.format(ns)
 quantidade = []
 for movie in root.iter(nf):
@@ -41,9 +36,9 @@ cursor = cnxn.cursor()
 
 for i in range(len(codprod)):
     count = cursor.execute("""
-    INSERT INTO GWOLAP.DBO.PRODUTOS_NF_APAGADA (CODPROD, NATOPER, QUANTIDADE, VALORUNIT) 
-    VALUES (?,?,?,?)""",
-    codprod[i], natOper[i], quantidade[i], valor[i]).rowcount
+    INSERT INTO Produtos (codigo do produto, quantidade, valor) 
+    VALUES (?,?,?)""",
+    codprod[i], quantidade[i], valor[i]).rowcount
     cnxn.commit()
     print('Rows inserted: ' + str(count))
     
